@@ -1,0 +1,18 @@
+
+#ÊSend 2000 Modbus packets in burst with codes 1 and 2, alternatively, with at least 0.114811 delay seconds between consecutive transmissions:
+
+python modbus_traffic.py 192.168.1.120 502 --option 4 --code 1 --code 2 -n 2000 -d 0.114811
+
+#ÊSend 3000 Modbus packets in burst with codes 1, 2 and 15, alternatively, with at least 0.114811 delay seconds between consecutive transmissions:
+
+python modbus_traffic.py 192.168.1.120 502 --option 4 --code 1 --code 2 --code 15 -n 3000 -d 0.114811
+
+# Send a Modbus packet with every Modbus code, delaying them 3 seconds
+
+python modbus_traffic.py 192.168.1.120 502 --option 3 -d 3
+
+# Send 1000 packets of the most common type, no delay:
+python modbus_traffic.py 192.168.1.120 502 --option 2 -d 0
+
+# Continuous traffic of code 5, no delay
+python modbus_traffic.py 192.168.1.120 502 --option 1 --code 5 -d 0 -n 100
