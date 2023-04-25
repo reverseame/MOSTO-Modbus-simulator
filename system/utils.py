@@ -1,10 +1,40 @@
 import socket
 from scapy.all import StreamSocket, Raw
 from datetime import datetime
-from core.logging import colors
+from system.colors import colors
 
+
+class Utilities:
+
+    @staticmethod
+    def create_connection(address, port, logger=None):
+        try:
+            s = socket.socket()
+            s.connect((address, int(port)))
+        except ConnectionRefusedError:
+            if logger:
+                logger.write("Connection refused.")
+            else:
+                UserOutput.response_output("Connection refused.", type='exception')
+            return None
+        except TimeoutError:
+            UserOutput.response_output("Connection timeout error.", type='exception')
+            return None
+        except Exception as ex:
+            if logger:
+                logger.write("Connection error to %s : %d" % (address, port))
+            raise ex
+        return StreamSocket(s, Raw)
+
+    @staticmethod
+    def close_connection(cnx, logger):
+        logger.write("Terminated connection at %s" % str(datetime.now()).split(".")[0])
+        cnx.close()
 
 class UserOutput:
+
+
+
     eol = '\n' + colors.reset
     warning = '\t\t[' + colors.bold + colors.fg.yellow + '*' + colors.reset + '] '
     information = '\t\t[' + colors.bold + colors.fg.cyan + '*' + colors.reset + '] '
@@ -35,18 +65,19 @@ class UserOutput:
 
     @staticmethod
     def banner():
-        title = "\n\n\t\t\t" + colors.bold + colors.UNDERLINE + colors.fg.lightblue + "WELCOME TO MODBUS MASTER SIMULATOR" + colors.reset
+        title = "\n\n\t\t\t" + colors.bold + colors.UNDERLINE + colors.fg.lightblue + "WELCOME TO MOSTO (MODBUS MASTER/SLAVE SIMULATOR)" + colors.reset
         banner = '''
-
-                    Version: 0.1 
-                    Author: @ibaimc24 
-                    Last updated: 09-08-2018
-
+                    
+                    Version: 0.2 
+                    Authors: @ibaimc24 / @RicardoJRdez
+                    Last updated: April 2023
+                    
                     ''' + colors.reset
         print(title + colors.fg.lightblue + banner)
 
 
 class UserInput:
+
     warning = '\t\t[' + colors.bold + colors.fg.yellow + '*' + colors.reset + '] '
     intro = '\t\t[' + colors.bold + colors.fg.green + '*' + colors.reset + '] '
 
@@ -74,11 +105,11 @@ class UserInput:
                     print(colors.fg.red + "\t\tThis value is mandatory." + colors.reset)
                 else:
                     if type is bool and (inp != '1' and inp != '0'):
-                        print(colors.fg.red + "\t\tMust be boolean (0/1)" + colors.reset)
+                        print(colors.fg.red + "\t\tMust be a boolean value (0/1)" + colors.reset)
                     elif type is bool:
                         return type(int(inp))
                     else:
                         return type(inp)
 
             except ValueError:
-                print(colors.fg.red + "\t\tMust be integer." + colors.reset)
+                print(colors.fg.red + "\t\tMust be an integer." + colors.reset)

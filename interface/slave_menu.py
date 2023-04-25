@@ -1,9 +1,9 @@
 from threading import Thread
-from ModbusSlave.core.configuration.utils import UserInput, UserOutput
+from system.utils import UserInput, UserOutput
 from prettytable import PrettyTable
-from ModbusSlave.core.utils import Configuration
-from ModbusSlave.system import Slave
-from ModbusSlave.core.handler import Handler
+from system.conf import SlaveConfiguration as Configuration
+from slavesys import Slave
+from system.handler import Handler
 import pickle
 import os
 
@@ -26,13 +26,13 @@ class Menu(Thread):
 
     helpCommand = [
         ['help', 'Help menu'],
-        ['new', 'Create new Master configuration'],
-        ['export', 'Export to file Master configuration'],
-        ['import', 'Import Master configuration from file'],
-        ['default', 'Load default configuration for Master'],
+        ['new', 'Create new Slave configuration'],
+        ['export', 'Export to file Slave configuration'],
+        ['import', 'Import Slave configuration from file'],
+        ['default', 'Load default configuration for Slave'],
         ['edit', 'Edit current configuration'],
-        ['status', 'Show slaves current status'],
-        ['start', 'Start the master with specified configuration parameters'],
+        ['status', 'Show slave current status'],
+        ['start', 'Start the Slave with specified configuration parameters'],
         ['exit', 'Exit the console']
     ]
 
@@ -145,9 +145,12 @@ class Menu(Thread):
         Exports the current cofiguration object to a binary file.
         :return:
         """
-        confdir_path = "./conf/"
+        confdir_path = "./config/"
+        if not os.path.exists(confdir_path):
+            os.mkdir(confdir_path)
+
         filename = UserInput.value_input("Select a file name", type=str, default=None, required=True)
-        path = confdir_path + filename
+        path = os.path.join(confdir_path, filename)
         with open(path, 'wb') as handle:
             pickle.dump(self.Config, handle, protocol=pickle.HIGHEST_PROTOCOL)
 

@@ -1,9 +1,9 @@
 from threading import Thread
 import threading
-from ModbusMaster.system.utils import Utilities, UserOutput
-from ModbusMaster.system.exceptions import *
+from system.utils import Utilities, UserOutput
+from system.exceptions import *
 from time import sleep
-from ModbusMaster.protocol.modbus import *
+from protocol.modbus import *
 import random
 from bitarray import bitarray
 
@@ -164,8 +164,13 @@ class Logger:
 
     @staticmethod
     def __create_log_file():
+        _log_path = "./log"
         filename = str(datetime.datetime.now()).lstrip("-").replace(":", "_").replace(" ", "-").split(".")[0] + ".log"
-        file_path = "./log/" + filename
+        file_path = os.path.join(_log_path, filename)
+
+        if not os.path.exists(_log_path):
+            os.mkdir(_log_path)
+
         fp = open(file_path, "w+")
         Logger.__add_header(fp)
         return fp

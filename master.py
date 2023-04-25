@@ -1,5 +1,5 @@
-from ModbusMaster.system.interface import MainMenu, WorkingMenu
-from ModbusMaster.system.core import Master
+from interface.server import MainMenu, WorkingMenu
+from system.core import Master
 
 menu = MainMenu()
 configuration = menu.start_menu()

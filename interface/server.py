@@ -1,8 +1,8 @@
 import pickle
-from ModbusMaster.system.conf import Configuration
+from system.conf import ServerConfiguration as Configuration
 import sys
 from prettytable import PrettyTable
-from ModbusMaster.system.utils import UserOutput, UserInput
+from system.utils import UserOutput, UserInput
 import os
 
 class MainMenu:
@@ -88,6 +88,9 @@ class MainMenu:
             UserOutput.response_output("There is no configuration to export. You must create one before.", type='error')
         else:
             filename = UserInput.value_input("Select a name for configuration file: ", type=str)
+            if not os.path.exists(conf_dir):
+                os.mkdir(conf_dir)
+
             with open(conf_dir + filename, 'wb') as fp:
                 pickle.dump(self.loaded_configuration, fp, protocol=pickle.HIGHEST_PROTOCOL)
 

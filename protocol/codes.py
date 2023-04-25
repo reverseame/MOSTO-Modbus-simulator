@@ -142,3 +142,38 @@ None,
 None,
 ENCAPSULATED_INTERFACE_TRANSPORT_Q
 ]
+
+FUNCTION_CODE_NAMES = {
+    _READ_COILS: "Read Coils",
+    _READ_DISCRETE_INPUTS: "Read Discrete Inputs",
+    _READ_MULTIPLE_HOLDING_REGISTERS: "Read Multiple Holding Registers",
+    _READ_INPUT_REGISTERS: "Read Input Registers",
+    _WRITE_SINGLE_COIL: "Write Single Coil",
+    _WRITE_SINGLE_HOLDING_REGISTER: "Write Single Holding Register",
+    _READ_EXCEPTION_STATUS: "Read Exception Status",
+    _DIAGNOSTICS: "Diagnostic",
+    _GET_COMM_EVENT_COUNTER: "Get Comm Event Counter",
+    _GET_COMM_EVENT_LOG: "Get Comm Event Log",
+    _WRITE_MULTIPLE_COILS: "Write Multiple Coils",
+    _WRITE_MULTIPLE_REGISTERS: "Write Multiple Holding Registers",
+    _REPORT_SERVER_ID: "Report Slave ID",
+    _READ_FILE_RECORD: "Read File Record",
+    _WRITE_FILE_RECORD: "Write File Record",
+    _MASK_WRITE_REGISTER: "Mask Write Register",
+    _READ_WRITE_MULTIPLE_REGISTERS: "Read/Write Multiple Registers",
+    _READ_FIFO_QUEUE: "Read FIFO Queue",
+    _RAW_QUERIES: "Read Device Identification"
+}
+
+_MODBUS_EXCEPTIONS = {
+    1: "Illegal function",
+    2: "Illegal data address",
+    3: "Illegal data value",
+    4: "Slave device failure",
+    5: "Acknowledge",
+    6: "Slave device busy",
+    8: "Memory parity error",
+    10: "Gateway path unavailable",
+    11: "Gateway target device failed to respond"
+}
+

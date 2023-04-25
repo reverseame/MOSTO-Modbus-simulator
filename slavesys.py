@@ -1,7 +1,7 @@
 from threading import Thread
-from ModbusSlave.core.protocols import *
-from ModbusSlave.core.exceptions import *
-from ModbusSlave.core.logging import colors
+from protocol import *
+from system.exceptions import *
+from system import colors
 
 
 class Slave(Thread):

@@ -1,6 +1,6 @@
 from scapy.all import *
 import binascii
-from ModbusSlave.core.exceptions import *
+from system.exceptions import *
 from bitarray import bitarray
 from threading import Lock
 
@@ -42,7 +42,6 @@ _modbus_exceptions = {
     10: "Gateway path unavailable",
     11: "Gateway target device failed to respond"}
 
-
 class Transaction:
 
     RegisterTypes = ['bit', 'register']
@@ -82,7 +81,7 @@ class Transaction:
         bits = []
         counter = 1
 
-        if register_type is 'bit':
+        if register_type == 'bit':
             n_bits = quantity
             max_counter = 8
         else:
@@ -99,7 +98,7 @@ class Transaction:
                 counter = 1
             counter += 1
         Transaction.Locker.release()
-        if register_type is 'bit':
+        if register_type == 'bit':
             data = Transaction.add_padding(data, bits)
         return data
 
@@ -110,7 +109,7 @@ class Transaction:
         offset = start_addr
 
         Transaction.Locker.acquire()
-        while remaining_bits is not 0:
+        while remaining_bits != 0:
             if remaining_bits // 8 > 0:
                 read_from_data = datablock.read_uint8(offset)
                 response.append(read_from_data)
@@ -138,7 +137,7 @@ class Transaction:
         :return:
         """
         # 0 Padding to 8 multiple
-        while len(bits) % 8 is not 0:
+        while len(bits) % 8 != 0:
             bits.append(False)
 
         # Append padding byte
@@ -182,7 +181,6 @@ class Transaction:
                     Transaction.Locker.release()
                     return
         Transaction.Locker.release()
-
 
 class ModbusADU(Packet):
 

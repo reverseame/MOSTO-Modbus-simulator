@@ -1,8 +1,8 @@
 from threading import Thread
 import random
 from time import sleep
-from ModbusSlave.core.utils import *
-from ModbusSlave.core.protocols import Transaction
+from system.utils import *
+from protocol.modbus import Transaction
 
 
 class Handler(Thread):
