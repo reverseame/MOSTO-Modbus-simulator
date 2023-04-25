@@ -9,7 +9,7 @@ class MainMenu:
         from ModbusSlave.core.utils import Configuration
 
         option = GenericInterace.get_load_option()
-        if option is "Default":  # Default Configuration
+        if option == "Default":  # Default Configuration
             configuration = GenericInterace.reload_configuration("./default.cnf")
             return configuration
 
@@ -33,11 +33,11 @@ class GenericInterace:
         msg = "Select a configuration for Slave"
         choices = ["New Configuration", "Default", "Choose", "Cancel"]
         reply = buttonbox(msg, title="Configuration", choices=choices)
-        if reply is "Cancel":
+        if reply == "Cancel":
             sys.exit(1)
-        if reply is "New Configuration":
+        elif reply == "New Configuration":
             reply = False
-        if reply is "Choose":
+        elif reply == "Choose":
             reply = fileopenbox(msg="Select saving directory", title="Save Configuration", default="./conf/",
                                 filetypes=["*.cnf", "CNF files"])
             if not reply:

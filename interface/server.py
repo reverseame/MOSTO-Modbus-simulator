@@ -41,7 +41,6 @@ class MainMenu:
         UserOutput.banner()
         while not self.finished:
             option = UserInput.command_input("MASTER >> ")
-            # option = input("MASTER >> ")
             func = self.switcher(option.lower())
             if func:
                 func()
@@ -74,8 +73,8 @@ class MainMenu:
 
     def edit(self):
         if not self.loaded_configuration:
-            if UserInput.value_input("There is no configuration loaded, "
-                                     "what you to create a new one? (Y/N)", type=str) == 'y':
+            if (UserInput.value_input("There is no configuration loaded. Do you "
+                                     "want to create a new one? (Y/N)", type=str)).lower() == 'y':
                 self.create_configuration()
             else:
                 pass
@@ -119,7 +118,6 @@ class MainMenu:
 
     def exit(self):
         o = UserInput.value_input("Are you sure you want to exit? (Y/N) > ", type=str)
-        # o = input()
         if o.lower() == 'y':
             self.loaded_configuration = None
             sys.exit(0)
