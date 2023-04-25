@@ -1,29 +1,16 @@
-# MODBUS SIMULATOR TOOL - MOST  
+# mosto-modbus-simulator
 
-[![License](http://img.shields.io/:license-GPLv2+-green.svg)](http://www.gnu.org/licenses/gpl-2.0.html)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-MOST is a simulator of SCADA networks based in ModbusTCP communications. The simulator involves both the master and the 
-slave appliances of a ModbusTCP communication where most common features of an SCADA system can be easily configured.
+`MOSTO` is a SCADA network device simulator based on ModbusTCP communications. The simulator involves both the master and slave devices of a ModbusTCP communication, where the most common features of a SCADA system can be easily configured.
 
-## Environment configuration
+## Usage
 
-MOST is python based framework that have some dependencies. To ease starting configuration, a conda environment has been
-exported to a yml file. This file can be easily install just typing:
+## Authors
 
-```
-$ conda env create -f environment.yml
-```
+- Ibai Marcos Cincunegui
+- Ricardo J. Rodríguez
 
-## How to use MOST
+## License
 
-The master and the slaves are completely disengaged from each other. To run the master simulator just run:
-
-```
-$ python ~/ModbusMaster/master.py
-```
-
-On the same way, to run the slave:
-
-```
-$ python ~/ModbusSlave/slave.py
-```
+Licensed under the [GNU GPLv3](LICENSE) license.
