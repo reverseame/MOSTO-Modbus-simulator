@@ -9,13 +9,13 @@
 The master and the slaves are completely disengaged from each other. To run the master simulator simply run:
 
 ```
-$ python master.py
+python master.py
 ```
 
 Likewise, to run the slave:
 
 ```
-$ python slave.py
+python slave.py
 ```
 
 ## Authors
