@@ -18,11 +18,11 @@ Likewise, to run the slave:
 python slave.py
 ```
 
-## Authors
+## Authors
 
 - Ibai Marcos Cincunegui
 - Ricardo J. Rodríguez
 
-## License
+## License
 
 Licensed under the [GNU GPLv3](LICENSE) license.
