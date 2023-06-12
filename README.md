@@ -1,8 +1,8 @@
 # mosto-modbus-simulator
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-
 `MOSTO` is a SCADA network device simulator based on ModbusTCP communications. The simulator involves both the master and slave devices of a ModbusTCP communication, where the most common features of a SCADA system can be easily configured.
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## Usage
 
